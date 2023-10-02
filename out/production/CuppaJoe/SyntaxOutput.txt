@@ -1,0 +1,72 @@
+
+
+
+publicclassTest
+{
+	privateAList<Profile>allProfiles;
+
+	/**Constructorforaninstanceofaprofilemanager.*/
+	publicTest()
+	{
+		allProfiles=newAList<>();
+	}//enddefaultconstructor
+
+	/**Addsaprofileontothesocialnetwork.
+		@parampTheprofiletobeaddedtothenetwork.*/
+	publicvoidaddProfile(Profilep)
+	{
+		allProfiles.add(p);
+	}//endaddProfile
+
+	/**Removesaprofilefromthesocialnetwork.
+		@parampTheprofiletoberemovedfromthenetwork.*/
+	publicvoidremoveProfile(Profilep)
+	{
+		if(allProfiles.contains(p))
+		{
+			//Assertion:pmustbeinthelist.
+			for(inti=1;i<=allProfiles.getLength();i++)
+			{
+				allProfiles.getEntry(i).removeFriend(p);
+			}
+
+			
+			intfoundIndex=-1;
+			for(inti=1;i<=allProfiles.getLength()&&foundIndex==-1;i++)
+			{
+				if(allProfiles.getEntry(i)==p)
+
+					foundIndex=i;
+			//MISSINGCLOSECURLYBRACE
+			allProfiles.remove(foundIndex);
+		//MISSINGCLOSECURLYBRACE
+	}//endremoveProfile
+
+	/**Createdafriendshipbetweentwoprofilesonthesocialnetwork.
+		@paramaThefirstprofileinthefriendship.
+		@parambThesecondprofileinthefriendship.*/
+	publicvoidcreateFriendship(Profilea,Profileb)
+	//MISSINGOPENCURLYBRACE
+		a.addFriend(b);
+		b.addFriend(a);
+	}//endcreateFriendship
+
+	/**Endsafriendshipbetweentwoprofilesonthesocialnetwork.
+		@paramaThefirstprofileinthefriendship.
+		@parambThesecondprofileinthefriendship.*/
+	publicvoidendFriendship(Profilea,Profileb)
+	{
+		a.removeFriend(b);
+		b.removeFriend(a);
+	}//endendFriendship
+
+	/**Displayseachprofile'sinformationandfriends.*/
+	publicvoiddisplay()
+	{
+		for(inti=1;i<=allProfiles.getLength();i++)
+		{
+			allProfiles.getEntry(i).display();
+			System.out.println("public");
+		}//endfor
+	}//enddisplay;
+}//endProfileManager
