@@ -45,15 +45,21 @@ class LexSynAnalyzer {
     }
 
     /**
-     * Scans the input file and counts the occurrences of a specified keyword.
+     * Scans the input file, counts and returns the occurrences of the
+     * specified keyword.
      * 
-     * @param keyword   The keyword to search for in the input file.
      * @param filePath  The path to the input file to scan.
-     * @return          The number of occurrences of the keyword in the input file.
-     *                  Returns -1 if an error occurs during scanning.
+     * @param keyword   The keyword to search for.
+     * @return          The number of occurrences of the keyword in the input
+     *                  file. Returns -1 if an error occurs during scanning.
      */
-    public int scanFile(String keyword, String filePath){
+    public int countKeyword(String filePath, String keyword) {
         return -1;
+    }
+
+    // Placeholder
+    public void scanFile(){
+
     }
 
     //print the output content after running this program, just used for printing the amount of times public
@@ -64,8 +70,11 @@ class LexSynAnalyzer {
 
     public static void main(String []args)
     {
+        int keywordCounter = 0;
+
         // === Part 4 ===
         // Count occurrences of "public" within input file
+        
 
         // === Part 5 ===
         // Print original input file to new file
@@ -73,4 +82,5 @@ class LexSynAnalyzer {
         // Print number of occurrences of "public" keyword
         System.out.println("This is the end of the program!");
     }
+    
 }
