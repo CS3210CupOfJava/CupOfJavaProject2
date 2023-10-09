@@ -47,7 +47,6 @@ class LexSynAnalyzer {
             }
             text.add(i+1, line + "{" + "\n");
             text.set(i+2, car);
-            text.add(i + 3, line + "\n");
         }
         else{
             tabStack.push(tabCount);
@@ -151,7 +150,7 @@ class LexSynAnalyzer {
 
     public static void main(String[] args) throws IOException {
 
-        String inputPath = "Test.txt";
+        String inputPath = "jacobTest.txt";
         String outputPath = "UpdatedCode.txt";
 
         // ArrayList to track each line of code from input file and to edit with fixes

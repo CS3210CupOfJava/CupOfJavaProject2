@@ -34,8 +34,9 @@ public class Test
 			int foundIndex = -1;
 			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
 			{
-				if (allProfiles.getEntry(i) == p)
+				if (allProfiles.getEntry(i) == p) //missing open brace - jacob
 					foundIndex = i;
+				//missing close brace - jacob
 
 			// MISSING CLOSE  CURLY BRACE
 			allProfiles.remove(foundIndex);

@@ -1,63 +1,65 @@
+public class TestBrackets {
 
+	public static void main(String[] args) {
+		int x = 10;
+		int y = 5;
+		int z = 0;
 
-
-public class Test
-{
-	private AList<Profile> allProfiles;
-
-	public Test()
-	{
-		allProfiles = new AList<>();
-	} 
-
-	public void addProfile(Profile p)
-	{
-		allProfiles.add(p);
-	} 
-
-	public void removeProfile(Profile p)
-	{
-		if (allProfiles.contains(p))
+		if (x > y)
 		{
-			
-			for (int i = 1; i <= allProfiles.getLength(); i++)
-			{
-				allProfiles.getEntry(i).removeFriend(p);
-			}
-
-
-			int foundIndex = -1;
-			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
-			{
-				if (allProfiles.getEntry(i) == p)
-				{
-					foundIndex = i;
-				}
-
-			
-			allProfiles.remove(foundIndex);
+			System.out.println("X is greater than Y.");
 		}
-	} 
-
-	public void createFriendship(Profile a, Profile b)
-	
-		a.addFriend(b);
-		b.addFriend(a);
-	} 
-
-	public void endFriendship(Profile a, Profile b)
-	{
-		a.removeFriend(b);
-		b.removeFriend(a);
-	} 
-
-	public void display()
-	{
-		for (int i = 1; i <= allProfiles.getLength(); i++)
+		else
 		{
-			allProfiles.getEntry(i).display();
-			System.out.println("public");
-		} 
-	} 
-} 
+			System.out.println("X is not greater than Y.");
+		}
 
+		if (y > z)
+		{
+			System.out.println("Y is greater than Z.");
+
+		}if (x == 10)
+		{
+			System.out.println("X is 10.");
+			if (y < 15)
+			{
+				System.out.println("Y is less than 15.");
+				if (z == 0)
+				{
+					System.out.println("Z is zero.");
+				}
+			} else
+				System.out.println("Y is not less than 15.");
+		}
+		if (z < x)
+		{
+			System.out.println("Z is less than X.");
+		}
+
+		if (x > y)
+		{
+			System.out.println("X is greater than Y.");
+		} else
+		{
+			System.out.println("X is not greater than Y.");
+		}
+
+		if (z > x)
+		{
+			System.out.println("Z is greater than X.");
+		}else
+			System.out.println("Z is not greater than X.");
+
+		if (x > y)
+		{
+			System.out.println("X is greater than Y.");
+			if (y > z)
+			{
+				System.out.println("Y is greater than Z.");
+			}else
+			{
+				System.out.println("Y is not greater than Z.");
+			}
+		}
+	}
+}
