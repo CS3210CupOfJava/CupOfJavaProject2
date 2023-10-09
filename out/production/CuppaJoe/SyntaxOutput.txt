@@ -1,6 +1,8 @@
-public class TestBrackets {
+public class TestBrackets
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		int x = 10;
 		int y = 5;
 		int z = 0;
@@ -17,8 +19,8 @@ public class TestBrackets {
 		if (y > z)
 		{
 			System.out.println("Y is greater than Z.");
-
-		}if (x == 10)
+		}
+		if (x == 10)
 		{
 			System.out.println("X is 10.");
 			if (y < 15)
@@ -28,8 +30,11 @@ public class TestBrackets {
 				{
 					System.out.println("Z is zero.");
 				}
-			} else
+			}
+			else
+			{
 				System.out.println("Y is not less than 15.");
+			}
 		}
 		if (z < x)
 		{
@@ -39,7 +44,8 @@ public class TestBrackets {
 		if (x > y)
 		{
 			System.out.println("X is greater than Y.");
-		} else
+		}
+		else
 		{
 			System.out.println("X is not greater than Y.");
 		}
@@ -47,8 +53,11 @@ public class TestBrackets {
 		if (z > x)
 		{
 			System.out.println("Z is greater than X.");
-		}else
+		}
+		else
+		{
 			System.out.println("Z is not greater than X.");
+		}
 
 		if (x > y)
 		{
@@ -56,10 +65,11 @@ public class TestBrackets {
 			if (y > z)
 			{
 				System.out.println("Y is greater than Z.");
-			}else
+			}
+			else
 			{
 				System.out.println("Y is not greater than Z.");
 			}
-        
+		}
 	}
 }

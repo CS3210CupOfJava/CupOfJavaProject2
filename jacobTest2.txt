@@ -5,45 +5,37 @@ public class BracketTest {
 		int b = 5;
 		int c = 7;
 
-
+		// Simple if without brackets
 		if (a > b)
-		{
 			System.out.println("A is greater than B.");
-		}
+		// Missing closing bracket here
 
 		if (a < b)
-		{
 			System.out.println("A is less than B.");
-		}
+		//here
 		else
-		{
 			System.out.println("A is not less than B.");
-		}
+		// Missing closing bracket here
 
-		
+		// Nested ifs
 		if (a > c)
 		{
 			if (c > b)
-			{
 				System.out.println("C is between A and B.");
-			}
+			//here
 			else
-			{
 				System.out.println("C is less than B and A.");
-			}
-		} 
+			//here
+		} // Correctly closed
 
-		if (b < a) 
-		{
+		if (b < a) // Missing opening bracket here
 			if (b < c)
-			{
 				System.out.println("B is the smallest.");
-			}
+			//here
 			else
-			{
 				System.out.println("B is not the smallest.");
-			}
-		}
+			//here
+		// Missing closing bracket for the outer if here
 
 		if (c > a)
 		{
@@ -54,21 +46,19 @@ public class BracketTest {
 			System.out.println("C is the smallest.");
 		}
 		else
-		{ 
+		{ // This is correct
 			System.out.println("C is between A and B.");
 		}
 
-		if (a == 10) 
-		{
+		if (a == 10) // Missing opening bracket here
 			if (b == 5)
 			{
 				System.out.println("A is 10 and B is 5.");
 				if (c == 7)
-				{
 					System.out.println("C is 7.");
-				}
+				//here
 			}
-		}
+		// Missing closing bracket for the outermost if here
 
 		System.out.println("End of program.");
 	}
