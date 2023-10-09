@@ -72,8 +72,9 @@ class LexSynAnalyzer {
                 //if we find a new line, reset tab counter.
                 else if (character == '\n') {
                     tabCount = 0;
+                    break;
                 }
-                else if (character == '}'){
+                else if (character == '}' && tabCount == tabStack.peek()){
                     close = true;
                     break;
                 }

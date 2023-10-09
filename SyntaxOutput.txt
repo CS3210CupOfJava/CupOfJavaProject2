@@ -18,9 +18,7 @@ public class Test
 	public void removeProfile(Profile p)
 	{
 		if (allProfiles.contains(p))
-{
-
-
+		{
 			
 			for (int i = 1; i <= allProfiles.getLength(); i++)
 			{
@@ -38,7 +36,7 @@ public class Test
 
 			
 			allProfiles.remove(foundIndex);
-		
+		}
 	} 
 
 	public void createFriendship(Profile a, Profile b)

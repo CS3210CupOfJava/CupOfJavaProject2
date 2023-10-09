@@ -23,7 +23,7 @@ public class Test
 	public void removeProfile(Profile p)
 	{
 		if (allProfiles.contains(p))
-
+		{
 			// Assertion: p must be in the list.
 			for (int i = 1; i <= allProfiles.getLength(); i++)
 			{
