@@ -30,13 +30,13 @@ public class Test
 				allProfiles.getEntry(i).removeFriend(p);
 			}
 
-			
+
 			int foundIndex = -1;
 			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
 			{
 				if (allProfiles.getEntry(i) == p)
-
 					foundIndex = i;
+
 			// MISSING CLOSE  CURLY BRACE
 			allProfiles.remove(foundIndex);
 		// MISSING CLOSE  CURLY BRACE
@@ -70,3 +70,4 @@ public class Test
 		} // end for
 	} // end display;
 } // end ProfileManager
+
