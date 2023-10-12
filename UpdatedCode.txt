@@ -13,7 +13,6 @@ public class Test
 
 	/** Adds a profile onto the social network.
 		@param p  The profile to be added to the network. */
-
 	public void addProfile(Profile p)
 	{
 		allProfiles.add(p);
@@ -109,7 +108,7 @@ public class Test
 				{
 					foundIndex = i;
 				}
-			}
+			
 			allProfiles.remove(foundIndex);
 		}
 	} 
@@ -130,7 +129,7 @@ public class Test
 	{
 
 		for (int i = 1; i <= allProfiles.getLength(); i++)
-		{
+			
 			allProfiles.getEntry(i).display();
 			System.out.println("public");
 		} 

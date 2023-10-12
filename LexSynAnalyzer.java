@@ -110,7 +110,7 @@ class LexSynAnalyzer {
                     inputLines.get(i).contains("do while") ||
                     inputLines.get(i).contains("for"))
             {
-                inputLines = checkLoop(i, inputLines);
+                //inputLines = checkLoop(i, inputLines);
             }
         }
 
@@ -319,7 +319,6 @@ class LexSynAnalyzer {
             for(int i = 0; i < arrayList.size(); i++) {
                 line = arrayList.get(i);
                 bw.write(line);
-                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
