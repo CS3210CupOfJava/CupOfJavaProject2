@@ -34,10 +34,9 @@ public class Test
 			int foundIndex = -1;
 			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
 			{
-				if (allProfiles.getEntry(i) == p) //missing open brace - jacob
+				if (allProfiles.getEntry(i) == p)
 					foundIndex = i;
-				//missing close brace - jacob
-
+				//missing bracket here too
 			// MISSING CLOSE  CURLY BRACE
 			allProfiles.remove(foundIndex);
 		// MISSING CLOSE  CURLY BRACE
@@ -64,8 +63,9 @@ public class Test
 	/** Displays each profile's information and friends. */
 	public void display()
 	{
+
 		for (int i = 1; i <= allProfiles.getLength(); i++)
-		{
+			//missing open brace
 			allProfiles.getEntry(i).display();
 			System.out.println("public");
 		} // end for

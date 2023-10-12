@@ -1,4 +1,4 @@
-
+========== HERE IS WHERE THE INPUT FILE'S CODE BEGINS ==========
 
 
 public class Test
@@ -30,16 +30,16 @@ public class Test
 				allProfiles.getEntry(i).removeFriend(p);
 			}
 
-			
+
 			int foundIndex = -1;
 			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
 			{
 				if (allProfiles.getEntry(i) == p)
-
 					foundIndex = i;
+				//missing bracket here too
 			// MISSING CLOSE  CURLY BRACE
 			allProfiles.remove(foundIndex);
-		}// MISSING CLOSE  CURLY BRACE
+		// MISSING CLOSE  CURLY BRACE
 	} // end removeProfile
 
 	/** Created a friendship between two profiles on the social network.
@@ -58,15 +58,81 @@ public class Test
 	{
 		a.removeFriend(b);
 		b.removeFriend(a);
-	} }// end endFriendship
+	} // end endFriendship
 
 	/** Displays each profile's information and friends. */
 	public void display()
 	{
+
+		for (int i = 1; i <= allProfiles.getLength(); i++)
+			allProfiles.getEntry(i).display();
+			System.out.println("public");
+		} // end for
+	} // end display;
+} // end ProfileManager
+
+========== HERE IS WHERE THE UPDATED CODE BEGINS ==========
+
+
+
+public class Test
+{
+	private AList<Profile> allProfiles;
+
+	public Test()
+	{
+		allProfiles = new AList<>();
+	} 
+
+	public void addProfile(Profile p)
+	{
+		allProfiles.add(p);
+	} 
+
+	public void removeProfile(Profile p)
+	{
+		if (allProfiles.contains(p))
+		{
+			
+			for (int i = 1; i <= allProfiles.getLength(); i++)
+			{
+				allProfiles.getEntry(i).removeFriend(p);
+			}
+
+
+			int foundIndex = -1;
+			for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
+			{
+				if (allProfiles.getEntry(i) == p)
+				{
+					foundIndex = i;
+				}
+			}
+			allProfiles.remove(foundIndex);
+		}
+	} 
+
+	public void createFriendship(Profile a, Profile b)
+	
+		a.addFriend(b);
+		b.addFriend(a);
+	} 
+
+	public void endFriendship(Profile a, Profile b)
+	{
+		a.removeFriend(b);
+		b.removeFriend(a);
+	} 
+
+	public void display()
+	{
+
 		for (int i = 1; i <= allProfiles.getLength(); i++)
 		{
 			allProfiles.getEntry(i).display();
 			System.out.println("public");
-		} // end for
-	} }// end display;
-} // end ProfileManager
+		} 
+	} 
+} 
+
+========== The keyword 'public' appears 8 times in the input file. ==========
