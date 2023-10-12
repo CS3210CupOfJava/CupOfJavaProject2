@@ -306,7 +306,7 @@ class LexSynAnalyzer {
             for(int i = 0; i < arrayList.size(); i++) {
                 line = arrayList.get(i);
                 bw.write(line);
-                bw.newLine();
+                
             }
         } catch (IOException e) {
             e.printStackTrace();
