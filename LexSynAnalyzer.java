@@ -25,8 +25,6 @@
  *  Assigned to Braden.
  */
 
-
-import java.io.*;
 import java.util.Stack;
 import java.io.BufferedReader;  // Used for reading text files.
 import java.io.BufferedWriter;  // Used for writing to text files.
@@ -104,7 +102,7 @@ class LexSynAnalyzer {
         }
 
         // ===== Part 2 =====
-        //begin checking arraylist for lines that contain "while", "do-while", or "for"
+        //begin checking arraylist for lines that contain "while", "do-while", or "
         for (int i = 0; i < inputLines.size(); i++) {
             if (inputLines.get(i).contains("while") ||
                     inputLines.get(i).contains("do while") ||
@@ -117,10 +115,10 @@ class LexSynAnalyzer {
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 
-
         // ===== Part 4 =====
         // Count occurrences of keyword "public" within input file
         keywordCount = countKeyword(inputPath, "public");
+
         // ===== Part 5 =====
         // Print original input file to specified text file
         printInputFileToOutputFile(inputPath, outputPath);
@@ -132,14 +130,13 @@ class LexSynAnalyzer {
     } // End main()
 
     // =============== Part 1 Method(s) ===============
-
     /**
      * Scans the input file, and Checks to make sure all decision structures
      * (if, if-else, if-else-if, switch) use curly braces appropriately.
      * If not, fix it.
      *
-     * @param i  The current iteration that the main loop was on.
-     * @param text   The arrayList containing the altered code. (removed comments)
+     * @param i             The current iteration that the main loop was on.
+     * @param text          The arrayList containing the altered code. (removed comments)
      * @return ArrayList    The updated ArrayList after we've added necessary brackets.
      */
     public static ArrayList<String> checkConditional(int i, ArrayList<String> text) {
@@ -232,7 +229,9 @@ class LexSynAnalyzer {
     // =============== Part 2 Method(s) ===============
     //Check to make sure all loop structures (while, do-while, for) use curly braces
     //appropriately. If not, fix it.
-
+    public static void checkLoop() {
+        
+    }
 
     // =============== Part 3 Method(s) ===============
     //Check to make sure all the method structure is syntactically correct. If not, fix it.
@@ -254,8 +253,6 @@ class LexSynAnalyzer {
     public static int countKeyword(String filePath, String keyword) {
         // Counter to track the number of occurrences of a keyword
         int keywordCounter = 0;
-        // Flag to track whether inside a Javamulti-line comment
-        boolean insideMultiLineComment = false;
         // String to track line of code
         String line = "";
         // Begin reading input file
@@ -272,6 +269,7 @@ class LexSynAnalyzer {
         }
         return keywordCounter;
     } // End countKeyword
+
     // =============== Part 5 Method(s) ===============
     /**
      * This method prints the input file's content to the specified output
