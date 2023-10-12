@@ -13,6 +13,7 @@ public class Test
 
 	/** Adds a profile onto the social network.
 		@param p  The profile to be added to the network. */
+
 	public void addProfile(Profile p)
 	{
 		allProfiles.add(p);

@@ -25,9 +25,15 @@
  *  Assigned to Braden.
  */
 
+
 import java.io.*;
-import java.util.ArrayList;     // ArrayList used for storing lines of code
 import java.util.Stack;
+import java.io.BufferedReader;  // Used for reading text files.
+import java.io.BufferedWriter;  // Used for writing to text files.
+import java.io.FileReader;      // Used to open and read from a text file.
+import java.io.FileWriter;      // Used to open and write to a text file.
+import java.io.IOException;     // Used for handling input/output errors.
+import java.util.ArrayList;     // ArrayList used for storing lines of code
 
 class LexSynAnalyzer {
 
@@ -107,6 +113,7 @@ class LexSynAnalyzer {
                 inputLines = checkLoop(i, inputLines);
             }
         }
+
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 
@@ -222,7 +229,6 @@ class LexSynAnalyzer {
         return text;
     }
 
-
     // =============== Part 2 Method(s) ===============
     //Check to make sure all loop structures (while, do-while, for) use curly braces
     //appropriately. If not, fix it.
@@ -313,6 +319,7 @@ class LexSynAnalyzer {
             for(int i = 0; i < arrayList.size(); i++) {
                 line = arrayList.get(i);
                 bw.write(line);
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
