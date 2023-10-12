@@ -25,8 +25,6 @@
  *  Assigned to Braden.
  */
 
-
-import java.io.*;
 import java.util.Stack;
 import java.io.BufferedReader;  // Used for reading text files.
 import java.io.BufferedWriter;  // Used for writing to text files.
@@ -105,18 +103,9 @@ class LexSynAnalyzer {
 
         // ===== Part 2 =====
         //begin checking arraylist for lines that contain "while", "do-while", or "for"
-        for (int i = 0; i < inputLines.size(); i++) {
-            if (inputLines.get(i).contains("while") ||
-                    inputLines.get(i).contains("do while") ||
-                    inputLines.get(i).contains("for"))
-            {
-                inputLines = checkLoop(i, inputLines);
-            }
-        }
 
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
-
 
         // ===== Part 4 =====
         // Count occurrences of keyword "public" within input file
@@ -254,8 +243,6 @@ class LexSynAnalyzer {
     public static int countKeyword(String filePath, String keyword) {
         // Counter to track the number of occurrences of a keyword
         int keywordCounter = 0;
-        // Flag to track whether inside a Javamulti-line comment
-        boolean insideMultiLineComment = false;
         // String to track line of code
         String line = "";
         // Begin reading input file
