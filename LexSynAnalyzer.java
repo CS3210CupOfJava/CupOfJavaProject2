@@ -110,6 +110,7 @@ class LexSynAnalyzer {
         // ===== Part 4 =====
         // Count occurrences of keyword "public" within input file
         keywordCount = countKeyword(inputPath, "public");
+
         // ===== Part 5 =====
         // Print original input file to specified text file
         printInputFileToOutputFile(inputPath, outputPath);
@@ -121,14 +122,13 @@ class LexSynAnalyzer {
     } // End main()
 
     // =============== Part 1 Method(s) ===============
-
     /**
      * Scans the input file, and Checks to make sure all decision structures
      * (if, if-else, if-else-if, switch) use curly braces appropriately.
      * If not, fix it.
      *
-     * @param i  The current iteration that the main loop was on.
-     * @param text   The arrayList containing the altered code. (removed comments)
+     * @param i             The current iteration that the main loop was on.
+     * @param text          The arrayList containing the altered code. (removed comments)
      * @return ArrayList    The updated ArrayList after we've added necessary brackets.
      */
     public static ArrayList<String> checkConditional(int i, ArrayList<String> text) {
@@ -221,7 +221,9 @@ class LexSynAnalyzer {
     // =============== Part 2 Method(s) ===============
     //Check to make sure all loop structures (while, do-while, for) use curly braces
     //appropriately. If not, fix it.
-
+    public static void checkLoop() {
+        
+    }
 
     // =============== Part 3 Method(s) ===============
     //Check to make sure all the method structure is syntactically correct. If not, fix it.
@@ -259,6 +261,7 @@ class LexSynAnalyzer {
         }
         return keywordCounter;
     } // End countKeyword
+
     // =============== Part 5 Method(s) ===============
     /**
      * This method prints the input file's content to the specified output
@@ -306,7 +309,6 @@ class LexSynAnalyzer {
             for(int i = 0; i < arrayList.size(); i++) {
                 line = arrayList.get(i);
                 bw.write(line);
-                
             }
         } catch (IOException e) {
             e.printStackTrace();
