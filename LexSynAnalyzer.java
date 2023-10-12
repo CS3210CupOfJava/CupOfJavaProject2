@@ -102,7 +102,15 @@ class LexSynAnalyzer {
         }
 
         // ===== Part 2 =====
-        //begin checking arraylist for lines that contain "while", "do-while", or "for"
+        //begin checking arraylist for lines that contain "while", "do-while", or "
+        for (int i = 0; i < inputLines.size(); i++) {
+            if (inputLines.get(i).contains("while") ||
+                    inputLines.get(i).contains("do while") ||
+                    inputLines.get(i).contains("for"))
+            {
+                //inputLines = checkLoop(i, inputLines);
+            }
+        }
 
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
