@@ -32,6 +32,7 @@ import java.io.FileReader;      // Used to open and read from a text file.
 import java.io.FileWriter;      // Used to open and write to a text file.
 import java.io.IOException;     // Used for handling input/output errors.
 import java.util.ArrayList;     // ArrayList used for storing lines of code
+import javax.lang.model.SourceVersion;		//To Check Keywords
 
 class LexSynAnalyzer {
 
@@ -113,7 +114,13 @@ class LexSynAnalyzer {
         }
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
-
+		for (int i = 0; i < inputLines.size(); i++) {
+            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class")) {
+				String syntaxLine = inputLines.get(i);
+                inputLines.set(i, checkSyntax(i, syntaxLine));
+            }
+        }
+		
         // ===== Part 4 =====
         // Count occurrences of keyword "public" within input file
         keywordCount = countKeyword(inputPath, "public");
@@ -291,8 +298,195 @@ class LexSynAnalyzer {
 
     // =============== Part 3 Method(s) ===============
     //Check to make sure all the method structure is syntactically correct. If not, fix it.
-    public static void checkSyntax() {
+	//Scrub all parenthesis after finding issue then fixes because people always find a way to mess things up.
+	
+    public static String checkSyntax(int i, String text){
+		int switchCase = -1;
+		
+		if(text.contains("(") && text.contains(")")){
+			switchCase = 0;
+		}
+		if(text.contains("(") && !text.contains(")")){
+			switchCase = 1;
+		}
+		if(!text.contains("(") && text.contains(")")){
+			switchCase = 2;
+		}
+		if(!text.contains("(") && !text.contains(")")){
+			switchCase = 3;
+		}
+		
+		switch (switchCase) {
+			case 0:
+				// Pair found, rewrite to fix other potential errors.
+				
+				text = text.replace("(", " ");
+				text = text.replace(")", " ");
+				//Fix the starting one.
+				String[] wordsCase0 = text.trim().split("\\s+");
+				for (int j = 0; j < wordsCase0.length; j++){
+					if (!SourceVersion.isKeyword(wordsCase0[j])){
+						wordsCase0[j] += "(";
+						break;
+					}
+				}
+				text = String.join(" ", wordsCase0);
+				wordsCase0 = null;
+				
+				//Fix the ending one
+				wordsCase0 = text.trim().split("\\s+");
+				for (int j = wordsCase0.length - 1; j > 0; j--){
+					if (!SourceVersion.isKeyword(wordsCase0[j])){
+						if(text.contains("{")){
+							wordsCase0[j-1] += ")";
+							text = String.join(" ", wordsCase0);
+							break;
+						}
+						else if(wordsCase0[wordsCase0.length - 1].endsWith("(")){
+							wordsCase0[j] += ")";
+							text = String.join(" ", wordsCase0);
+						}
+						else {
+							text = String.join(" ", wordsCase0);
+							text += ")";
+							break;							
+						
+						}
+					}
+				}
+				wordsCase0 = null;
+				break;
 
+			case 1:
+				// Missing closing parenthesis. 
+				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
+				
+				System.out.println("Fixing missing closing parenthesis and other potential errors at: " + text);
+				text = text.replace("(", " ");
+				text = text.replace(")", " ");
+				//Fix the starting one.
+				String[] wordsCase1 = text.trim().split("\\s+");
+				for (int j = 0; j < wordsCase1.length; j++){
+					if (!SourceVersion.isKeyword(wordsCase1[j])){
+						wordsCase1[j] += "(";
+						break;
+					}
+				}
+				text = String.join(" ", wordsCase1);
+				wordsCase1 = null;
+				
+				//Fix the ending one
+				wordsCase1 = text.trim().split("\\s+");
+				for (int j = wordsCase1.length - 1; j > 0; j--){
+					if (!SourceVersion.isKeyword(wordsCase1[j])){
+						if(text.contains("{")){
+							wordsCase1[j-1] += ")";
+							text = String.join(" ", wordsCase1);
+							break;
+						}
+						else if(wordsCase1[wordsCase1.length - 1].endsWith("(")){
+							wordsCase1[j] += ")";
+							text = String.join(" ", wordsCase1);
+						}
+						else {
+							text = String.join(" ", wordsCase1);
+							text += ")";
+							break;							
+						
+						}
+					}
+				}
+				wordsCase1 = null;
+				break;
+				
+			case 2:
+				// Missing starting parenthesis.
+				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
+				
+				System.out.println("Fixing missing starting parenthesis and other potential errors at: " + text);
+				text = text.replace("(", " ");
+				text = text.replace(")", " ");
+				//Fix the starting one.
+				String[] wordsCase2 = text.trim().split("\\s+");
+				for (int j = 0; j < wordsCase2.length; j++){
+					if (!SourceVersion.isKeyword(wordsCase2[j])){
+						wordsCase2[j] += "(";
+						break;
+					}
+				}
+				text = String.join(" ", wordsCase2);
+				wordsCase2 = null;
+				
+				//Fix the ending one
+				wordsCase2 = text.trim().split("\\s+");
+				for (int j = wordsCase2.length - 1; j > 0; j--){
+					if (!SourceVersion.isKeyword(wordsCase2[j])){
+						if(text.contains("{")){
+							wordsCase2[j-1] += ")";
+							text = String.join(" ", wordsCase2);
+							break;
+						}
+						else if(wordsCase2[wordsCase2.length - 1].endsWith("(")){
+							wordsCase2[j] += ")";
+							text = String.join(" ", wordsCase2);
+						}
+						else {
+							text = String.join(" ", wordsCase2);
+							text += ")";
+							break;							
+						
+						}
+					}
+				}
+				wordsCase2 = null;
+				break;
+				
+			case 3:
+				// Missing both.
+				
+				System.out.println("Fixing missing paired parenthesis and other potential errors at: " + text);
+				//Fix the starting one.
+				String[] wordsCase3 = text.trim().split("\\s+");
+				for (int j = 0; j < wordsCase3.length; j++){
+					if (!SourceVersion.isKeyword(wordsCase3[j])){
+						wordsCase3[j] += "(";
+						break;
+					}
+				}
+				text = String.join(" ", wordsCase3);
+				wordsCase3 = null;
+				
+				//Fix the ending one
+				wordsCase3 = text.trim().split("\\s+");
+				for (int j = wordsCase3.length - 1; j > 0; j--){
+					if (!SourceVersion.isKeyword(wordsCase3[j])){
+						if(text.contains("{")){
+							wordsCase3[j-1] += ")";
+							text = String.join(" ", wordsCase3);
+							break;
+						}
+						else if(wordsCase3[wordsCase3.length - 1].endsWith("(")){
+							wordsCase3[j] += ")";
+							text = String.join(" ", wordsCase3);
+						}
+						else {
+							text = String.join(" ", wordsCase3);
+							text += ")";
+							break;							
+						
+						}
+					}
+				}
+				wordsCase3 = null;
+				break;
+				
+			default:
+				// Something has gone horribly wrong.
+				System.out.println("Error: Bad syntax switch case");
+				break;
+		}
+		
+		return text;
     }
 
     // =============== Part 4 Method(s) ===============
