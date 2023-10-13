@@ -116,9 +116,9 @@ class LexSynAnalyzer {
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 		for (int i = 0; i < inputLines.size(); i++) {
-            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class"))) {
-				String syntaxLine = inputLines<i>;
-                inputLines<i> = checkSyntax(i, syntaxLine);
+            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class")) {
+				String syntaxLine = inputLines[i];
+                inputLines[i] = checkSyntax(i, syntaxLine);
             }
         }
 		
