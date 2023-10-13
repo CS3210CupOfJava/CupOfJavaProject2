@@ -114,7 +114,13 @@ class LexSynAnalyzer {
 
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
-
+		for (int i = 0; i < inputLines.size(); i++) {
+            if (inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) {
+				String syntaxLine = inputLines<i>;
+                inputLines<i> = checkSyntax(i, syntaxLine);
+            }
+        }
+		
         // ===== Part 4 =====
         // Count occurrences of keyword "public" within input file
         keywordCount = countKeyword(inputPath, "public");
@@ -235,8 +241,43 @@ class LexSynAnalyzer {
 
     // =============== Part 3 Method(s) ===============
     //Check to make sure all the method structure is syntactically correct. If not, fix it.
-    public static void checkSyntax() {
-
+    public static String checkSyntax(int i, String text){
+		int switchCase = -1;
+		
+		if(text.contains("(") && text.contains(")")){
+			switchCase = 0;
+		}
+		if(text.contains("(") && !text.contains(")")){
+			switchCase = 1;
+		}
+		if(!text.contains("(") && !text.contains(")")){
+			switchCase = 2;
+		}
+		
+		switch (switchCase) {
+			case 0:
+				// Nothings wrong with this method.
+				break;
+			case 1:
+				// Missing closing bracket
+                text = text.substring(0, text.length() - 1) + ")" + text.substring(text.length() - 1, text.length());
+				break;
+			case 2:
+				// Missing starting bracket.
+				
+				break;
+				
+			case 3:
+				// Missing both.
+				
+				break;
+			default:
+				// Something has gone horribly wrong.
+				System.out.println("Error: Bad syntax switch case");
+				break;
+		}
+		
+		return text;
     }
 
     // =============== Part 4 Method(s) ===============
