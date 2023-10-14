@@ -1,4 +1,4 @@
-/*  Project 2: Lexical and Syntax Analysis
+/* Project 2: Lexical and Syntax Analysis
  * In this project we are assuming that the input file has correct indentation as well as
  * comments where missing brackets should be as we heavily rely on this
  * for the logic of conditional statements and loops.
@@ -47,12 +47,8 @@ class LexSynAnalyzer {
         // String to hold each line of code from input file
         String line = "";
 
-        // ===== Part 1 Declarations =====
-        // ===== Part 2 Declarations =====
-        // ===== Part 3 Declarations =====
         // ===== Part 4 Declarations =====
         int keywordCount = 0;
-        // ===== Part 5 Declarations =====
 
         // ========== Begin the project ==========
         System.out.println("Let the scanning begin!");
@@ -90,6 +86,7 @@ class LexSynAnalyzer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         // ===== Part 1 =====
         //begin checking arraylist for lines that contain "if", "else if", "if else if", "else", or "switch"
         for (int i = 0; i < inputLines.size(); i++) {
@@ -112,11 +109,13 @@ class LexSynAnalyzer {
                 inputLines = checkLoop(i, inputLines);
             }
         }
+
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 		for (int i = 0; i < inputLines.size(); i++) {
             if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private") || inputLines.get(i).contains("protected")) && !inputLines.get(i).contains("class") && !inputLines.get(i).contains(";")){
-				String syntaxLine = inputLines.get(i);
+                String syntaxLine = inputLines.get(i);
+                inputLines = checkConditional(i, inputLines);
                 inputLines.set(i, checkSyntax(i, syntaxLine));
             }
         }
@@ -581,7 +580,7 @@ class LexSynAnalyzer {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(outputPath, true))) {
             // Print message signifying where the ArrayList code begins
             bw.write(message);
-            bw.newLine();
+            
 
             // Print the contents of the ArrayList to the specified file
             for(int i = 0; i < arrayList.size(); i++) {
