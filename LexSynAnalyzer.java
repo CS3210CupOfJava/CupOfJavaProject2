@@ -116,7 +116,7 @@ class LexSynAnalyzer {
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 		for (int i = 0; i < inputLines.size(); i++) {
-            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class")) {
+            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class") && !inputLines.get(i).contains(";")){
 				String syntaxLine = inputLines.get(i);
                 inputLines.set(i, checkSyntax(i, syntaxLine));
             }
@@ -264,8 +264,8 @@ class LexSynAnalyzer {
 			case 0:
 				// Pair found, rewrite to fix other potential errors.
 				
-				text = text.replace("(", " ");
-				text = text.replace(")", " ");
+				text = text.replace("(", "");
+				text = text.replace(")", "");
 				//Fix the starting one.
 				String[] wordsCase0 = text.trim().split("\\s+");
 				for (int j = 0; j < wordsCase0.length; j++){
@@ -306,8 +306,8 @@ class LexSynAnalyzer {
 				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
 				
 				System.out.println("Fixing missing closing parenthesis and other potential errors at: " + text);
-				text = text.replace("(", " ");
-				text = text.replace(")", " ");
+				text = text.replace("(", "");
+				text = text.replace(")", "");
 				//Fix the starting one.
 				String[] wordsCase1 = text.trim().split("\\s+");
 				for (int j = 0; j < wordsCase1.length; j++){
@@ -348,8 +348,8 @@ class LexSynAnalyzer {
 				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
 				
 				System.out.println("Fixing missing starting parenthesis and other potential errors at: " + text);
-				text = text.replace("(", " ");
-				text = text.replace(")", " ");
+				text = text.replace("(", "");
+				text = text.replace(")", "");
 				//Fix the starting one.
 				String[] wordsCase2 = text.trim().split("\\s+");
 				for (int j = 0; j < wordsCase2.length; j++){
