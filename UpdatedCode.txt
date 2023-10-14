@@ -46,7 +46,7 @@ public class Test
 		@param a  The first profile in the friendship.
 		@param b  The second profile in the friendship. */
 	public void createFriendship(Profile a, Profile b)
-	// MISSING OPEN  CURLY BRACE
+		// MISSING OPEN  CURLY BRACE
 		a.addFriend(b);
 		b.addFriend(a);
 	} // end createFriendship
@@ -78,15 +78,18 @@ public class Test
 {
 	private AList<Profile> allProfiles;
 
-public Test()	{
+	public Test()
+	{
 		allProfiles = new AList<>();
 	} 
 
-public void addProfile( Profile p)	{
+	public void addProfile(Profile p)
+	{
 		allProfiles.add(p);
 	} 
 
-public void removeProfile( Profile p)	{
+	public void removeProfile(Profile p)
+	{
 		if (allProfiles.contains(p))
 		{
 			
@@ -108,17 +111,21 @@ public void removeProfile( Profile p)	{
 		}
 	} 
 
-public void createFriendship( Profile a, Profile b)	
+	public void createFriendship(Profile a, Profile b)
+	{
+		
 		a.addFriend(b);
 		b.addFriend(a);
 	} 
 
-public void endFriendship( Profile a, Profile b)	{
+	public void endFriendship(Profile a, Profile b)
+	{
 		a.removeFriend(b);
 		b.removeFriend(a);
 	} 
 
-public void display()	{
+	public void display()
+	{
 
 		for (int i = 1; i <= allProfiles.getLength(); i++)
 		{

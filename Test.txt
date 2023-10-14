@@ -46,7 +46,7 @@ public class Test
 		@param a  The first profile in the friendship.
 		@param b  The second profile in the friendship. */
 	public void createFriendship(Profile a, Profile b)
-	// MISSING OPEN  CURLY BRACE
+		// MISSING OPEN  CURLY BRACE
 		a.addFriend(b);
 		b.addFriend(a);
 	} // end createFriendship
