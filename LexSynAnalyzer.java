@@ -103,16 +103,15 @@ class LexSynAnalyzer {
         }
 
         // ===== Part 2 =====
-        //begin checking arraylist for lines that contain "while", "do-while", or "
+        //begin checking arraylist for lines that contain "while", "do-while", or "for"
         for (int i = 0; i < inputLines.size(); i++) {
             if (inputLines.get(i).contains("while") ||
-                    inputLines.get(i).contains("do while") ||
-                    inputLines.get(i).contains("for"))
+                inputLines.get(i).contains("do while") ||
+                inputLines.get(i).contains("for"))
             {
-                //inputLines = checkLoop(i, inputLines);
+                inputLines = checkLoop(i, inputLines);
             }
         }
-
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 		for (int i = 0; i < inputLines.size(); i++) {
@@ -234,10 +233,67 @@ class LexSynAnalyzer {
     }
 
     // =============== Part 2 Method(s) ===============
-    //Check to make sure all loop structures (while, do-while, for) use curly braces
-    //appropriately. If not, fix it.
-    public static void checkLoop() {
-        
+    /**
+     * Scans the input file, and Checks to make sure all loop structures 
+     * (while, do-while, for) use curly braces appropriately.
+     * If not, fix it.
+     *
+     * @param i             The current iteration that the main loop was on.
+     * @param text          The arrayList containing the altered code. (removed comments)
+     * @return ArrayList    The updated ArrayList after we've added necessary brackets.
+     */
+    public static ArrayList<String> checkLoop(int i, ArrayList<String> text) {
+        Stack<String> stack = new Stack<String>();
+        Stack<Integer> tabStack = new Stack<Integer>();
+        int tabCount = 0;
+        boolean close = false;
+
+        // Begin checks for opening bracket.
+        String car = text.get(i + 1);
+        tabCount = car.length() - car.replaceAll(Character.toString('\t'), "").length();
+        String line = "";
+        stack.push("{");
+        if (!car.contains("{")) {
+            text.set(i+1, "");
+            tabStack.push(tabCount - 1);
+            for (int j = 0; j < tabCount - 1; j++) {
+                line += "\t";
+            }
+            text.add(i+1, line + "{" + "\n");
+            text.set(i + 2, car);
+        }
+        else{
+            tabStack.push(tabCount);
+        }
+        for (int j = i + 2; j < text.size(); j++) {
+            if (close) {
+                break;
+            }
+            car = text.get(j);
+            tabCount = car.length() - car.replaceAll(Character.toString('\t'), "").length();
+            for (int k = 0; k < car.length(); k++) {
+                char character = car.charAt(k);
+                if (character == '}' && tabCount == tabStack.peek()){
+                    close = true;
+                    break;
+                }
+                if (tabStack.size() > 0 && tabCount == tabStack.peek() && car.length() > 1) {
+                    char temp = car.charAt(k + 1);
+                    if (temp == '\n' && !car.contains("}")) {
+                        line = text.get(j).replaceAll("^\\t+", "");
+                        String line2 = "";
+                        stack.pop();
+                        int tabs = tabStack.pop();
+                        for (int y = 0; y < tabs; y++) {
+                            line2 += "\t";
+                        }
+                        text.set(j, line2 + "}" + line);
+                        close = true;
+                    }
+                }
+            }
+        }
+        return text;
     }
 
     // =============== Part 3 Method(s) ===============
@@ -457,8 +513,7 @@ class LexSynAnalyzer {
     // =============== Part 4 Method(s) ===============
     /**
      * Scans the input file, counts and returns the occurrences of the
-     * specified keyword. Ignores Java comment lines and Java multi-line
-     * comments while searching.
+     * specified keyword.
      *
      * @param filePath  The path to the input file to scan.
      * @param keyword   The keyword to search for.
