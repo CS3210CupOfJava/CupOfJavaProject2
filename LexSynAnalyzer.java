@@ -246,7 +246,12 @@ class LexSynAnalyzer {
 	
     public static String checkSyntax(int i, String text){
 		int switchCase = -1;
-		String originalIndentation = text.replaceAll("^(\\s*).*", "$1");
+		int tabCount = 0;
+		for (int i = 0; i < text.length(); i++) {
+			if (text.charAt(i) == '\t') {
+				tabCount++;
+			}
+		}
 		
 		if(text.contains("(") && text.contains(")")){
 			switchCase = 0;
@@ -306,7 +311,7 @@ class LexSynAnalyzer {
 				// Missing closing parenthesis. 
 				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
 				
-				System.out.println("Fixing missing closing parenthesis and other potential errors at: " + text);
+				System.out.println("Fixing missing closing parenthesis and other potential errors at: \n" + text + " \n");
 				text = text.replace("(", " ");
 				text = text.replace(")", " ");
 				//Fix the starting one.
@@ -348,7 +353,7 @@ class LexSynAnalyzer {
 				// Missing starting parenthesis.
 				//Split up strings into substrings and use checkIfKeyWord to place the parenthesis
 				
-				System.out.println("Fixing missing starting parenthesis and other potential errors at: " + text);
+				System.out.println("Fixing missing starting parenthesis and other potential errors at: \n" + text + " \n");
 				text = text.replace("(", " ");
 				text = text.replace(")", " ");
 				//Fix the starting one.
@@ -389,7 +394,7 @@ class LexSynAnalyzer {
 			case 3:
 				// Missing both.
 				
-				System.out.println("Fixing missing paired parenthesis and other potential errors at: " + text);
+				System.out.println("Fixing missing paired parenthesis and other potential errors at: \n" + text + " \n");
 				//Fix the starting one.
 				String[] wordsCase3 = text.trim().split("\\s+");
 				for (int j = 0; j < wordsCase3.length; j++){
@@ -430,8 +435,14 @@ class LexSynAnalyzer {
 				System.out.println("Error: Bad syntax switch case");
 				break;
 		}
+		String tabBuffer = "";
+		for (int i = 0; i < tabCount; i++){
+			tabBuffer += '\t';
+		}
 		
-		text = originalIndentation + text + "\n";
+		text = tabBuffer + text + "\n";
+		tabCount = 0;
+		
 		return text;
     }
 
