@@ -493,6 +493,14 @@ class LexSynAnalyzer {
 				System.out.println("Error: Bad syntax switch case");
 				break;
 		}
+		
+		for (int v = 0; v < text.length() - 1; v++) { // -1 to avoid checking out of bounds
+			if (text.charAt(v) == '(' && text.charAt(v + 1) == ' ') {
+				text = text.substring(0, v + 1) + text.substring(v + 2);
+				v--; // Adjust loop index since we removed a character
+			}
+		}
+		
 		String tabBuffer = "";
 		for (int c = 0; c < tabCount; c++){
 			tabBuffer += '\t';
