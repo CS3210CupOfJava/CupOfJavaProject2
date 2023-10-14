@@ -74,23 +74,19 @@ public class Test
 ========== HERE IS WHERE THE UPDATED CODE BEGINS ==========
 
 
-
 public class Test
 {
 	private AList<Profile> allProfiles;
 
-	public Test()
-	{
+public Test()	{
 		allProfiles = new AList<>();
 	} 
 
-	public void addProfile(Profile p)
-	{
+public void addProfile( Profile p)	{
 		allProfiles.add(p);
 	} 
 
-	public void removeProfile(Profile p)
-	{
+public void removeProfile( Profile p)	{
 		if (allProfiles.contains(p))
 		{
 			
@@ -112,20 +108,17 @@ public class Test
 		}
 	} 
 
-	public void createFriendship(Profile a, Profile b)
-	
+public void createFriendship( Profile a, Profile b)	
 		a.addFriend(b);
 		b.addFriend(a);
 	} 
 
-	public void endFriendship(Profile a, Profile b)
-	{
+public void endFriendship( Profile a, Profile b)	{
 		a.removeFriend(b);
 		b.removeFriend(a);
 	} 
 
-	public void display()
-	{
+public void display()	{
 
 		for (int i = 1; i <= allProfiles.getLength(); i++)
 		{

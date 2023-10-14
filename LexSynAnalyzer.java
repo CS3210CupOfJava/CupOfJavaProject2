@@ -90,6 +90,7 @@ class LexSynAnalyzer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
         // ===== Part 1 =====
         //begin checking arraylist for lines that contain "if", "else if", "if else if", "else", or "switch"
         for (int i = 0; i < inputLines.size(); i++) {
@@ -112,10 +113,11 @@ class LexSynAnalyzer {
                 inputLines = checkLoop(i, inputLines);
             }
         }
+
         // ===== Part 3 =====
         //Check to make sure all the method structure is syntactically correct. If not, fix it.
 		for (int i = 0; i < inputLines.size(); i++) {
-            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class")) {
+            if ((inputLines.get(i).contains("public") || inputLines.get(i).contains("private")) && !inputLines.get(i).contains("class") && !inputLines.get(i).contains(";")){
 				String syntaxLine = inputLines.get(i);
                 inputLines.set(i, checkSyntax(i, syntaxLine));
             }
@@ -560,7 +562,7 @@ class LexSynAnalyzer {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(outputPath, true))) {
             // Print message signifying where the ArrayList code begins
             bw.write(message);
-            bw.newLine();
+            
 
             // Print the contents of the ArrayList to the specified file
             for(int i = 0; i < arrayList.size(); i++) {
