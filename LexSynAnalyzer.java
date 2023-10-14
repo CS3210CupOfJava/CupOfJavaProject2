@@ -305,8 +305,8 @@ class LexSynAnalyzer {
     public static String checkSyntax(int i, String text){
 		int switchCase = -1;
 		int tabCount = 0;
-		for (int i = 0; i < text.length(); i++) {
-			if (text.charAt(i) == '\t') {
+		for (int u = 0; u < text.length(); u++) {
+			if (text.charAt(u) == '\t') {
 				tabCount++;
 			}
 		}
@@ -494,7 +494,7 @@ class LexSynAnalyzer {
 				break;
 		}
 		String tabBuffer = "";
-		for (int i = 0; i < tabCount; i++){
+		for (int c = 0; c < tabCount; c++){
 			tabBuffer += '\t';
 		}
 		
