@@ -302,6 +302,7 @@ class LexSynAnalyzer {
 	
     public static String checkSyntax(int i, String text){
 		int switchCase = -1;
+		String originalIndentation = text.replaceAll("^(\\s*).*", "$1");
 		
 		if(text.contains("(") && text.contains(")")){
 			switchCase = 0;
@@ -486,7 +487,7 @@ class LexSynAnalyzer {
 				break;
 		}
 		
-		text += "\n";
+		text = originalIndentation + text + "\n";
 		return text;
     }
 
